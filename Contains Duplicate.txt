@@ -1,0 +1,21 @@
+1. Using HashSet:Add all elements from Array to HashSet; Duplicate elements will not be added.
+   Then we can compare the length to find if it contains any duplicate value.
+
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        
+        boolean containsDuplicate = true;
+        HashSet hs = new HashSet();
+        
+        for(int i=0; i<nums.length; i++)
+            hs.add(nums[i]);
+            
+        if(hs.size() == nums.length)
+            containsDuplicate = false;
+        
+        return containsDuplicate;
+        
+    }
+}
+
+
