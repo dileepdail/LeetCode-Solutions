@@ -1,0 +1,5 @@
+/* Write your PL/SQL query statement below */
+
+select person.firstname, person.lastname, address.city, address.state
+from person left join address on
+person.PersonId = address.PersonId;
