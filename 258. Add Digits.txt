@@ -1,0 +1,14 @@
+class Solution {
+    public int addDigits(int num) {
+        
+        while(num > 9){
+            int val =0;
+            String str = Integer.toString(num);
+            
+            for(int i=0; i< str.length(); i++)
+                val = val+ Character.getNumericValue(str.charAt(i));
+            num = val;
+        }
+        return num;
+    }
+}
