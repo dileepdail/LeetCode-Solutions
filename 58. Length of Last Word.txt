@@ -1,0 +1,20 @@
+class Solution {
+    public int lengthOfLastWord(String s) {
+        
+        int count =0;
+        boolean wordFound = false;
+        for(int i=s.length()-1; i>=0; i--){
+            if((int)s.charAt(i) == 32){
+                if(wordFound)
+                    break;
+                else
+                    continue;
+                
+            }else{
+                wordFound =true;
+                count++;
+            }
+        }
+        return count;
+    }
+}
