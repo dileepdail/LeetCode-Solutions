@@ -1,0 +1,32 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    int rootVal;
+    boolean isUnivalTree = true;
+    public boolean isUnivalTree(TreeNode root) {
+        traverseTree(root, root.val);
+        return isUnivalTree;
+    }
+    
+    public void traverseTree(TreeNode node, int val){
+        if(node == null)
+            return;
+        
+        if(val != -1)
+            rootVal = node.val;
+        
+        if(node.val != rootVal){
+            isUnivalTree = false;
+            return;
+        }
+        traverseTree(node.left,-1);
+        traverseTree(node.right,-1);
+    }
+}
