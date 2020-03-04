@@ -1,0 +1,41 @@
+class Solution {
+    public String[] findWords(String[] words) {
+     
+        List<Character> list1= new ArrayList<Character>(List.of('q','w','e','r','t','y','u','i','o','p'));
+        List<Character> list2= new ArrayList<Character>(List.of('a','s','d','f','g','h','j','k','l'));
+        List<Character> list3= new ArrayList<Character>(List.of('z','x','c','v','b','n','m'));
+        List<String> returnList = new ArrayList<String>();
+        
+        for(String word: words){
+            String word1 = word.toLowerCase();
+            boolean flag = false;
+            if(list1.contains(word1.charAt(0)))
+                flag = helper(word1,list1);
+            else if(list2.contains(word1.charAt(0)))
+                flag = helper(word1,list2);
+            else
+                flag = helper(word1,list3);
+            
+            if(flag)
+                returnList.add(word);
+        }
+        
+        String[] returnArr = new String[returnList.size()];
+        
+        for(int i=0; i< returnList.size(); i++)
+            returnArr[i] = returnList.get(i);
+        
+        return returnArr;
+    }
+    
+    public boolean helper(String word, List<Character> list){
+        boolean isPresent = true;
+        for(int i=0; i< word.length(); i++){
+            if(!list.contains(word.charAt(i))){
+                isPresent = false;
+                break;
+            }
+        }
+        return isPresent;
+    } 
+}
