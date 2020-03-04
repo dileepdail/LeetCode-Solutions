@@ -1,0 +1,16 @@
+class Solution {
+    public List<Integer> grayCode(int n) {
+        
+        List<Integer> res = new ArrayList<Integer>();
+        res.add(0);
+        int p = 1;
+        for(int i = 1; i <= n; i++){
+            List <Integer>tmp = new ArrayList<Integer>(res);
+            for(int j = tmp.size() - 1; j >= 0; j--){
+                res.add(tmp.get(j) + p);
+            }
+            p *= 2;
+        }
+        return res;
+    }
+}
