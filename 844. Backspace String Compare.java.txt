@@ -1,0 +1,18 @@
+class Solution {
+    public boolean backspaceCompare(String S, String T) {
+        return helper(S).equals(helper(T));
+    }
+    
+    public List<Character> helper(String str){
+        List<Character> list = new ArrayList<Character>();
+        
+        for(int i=0; i<str.length(); i++){
+            if(str.charAt(i) == '#' && list != null && list.size()>0){
+                list.remove(list.size()-1);
+            }else if(str.charAt(i) != '#'){
+                list.add(str.charAt(i));
+            }
+        }
+        return list;
+    }
+}
