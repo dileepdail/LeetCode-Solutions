@@ -1,0 +1,51 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+        int result = 0, max =0;
+        HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();
+        for(int i=0; i< nums.length; i++){
+            if(hm.containsKey(nums[i])){
+                hm.put(nums[i], hm.getOrDefault(nums[i],0)+1);
+            }else{
+                hm.put(nums[i], 1);
+            }
+        }
+
+        Set keySet = hm.keySet();
+        for(Object key: keySet){
+            if(hm.get(key) > max){
+                max = hm.get(key);
+                result = (Integer)key;
+            }
+        }
+        return result;
+    }
+}
+
+===========
+Sorting Method
+===========
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length/2];
+    }
+}
+
+============
+class Solution {
+    public int majorityElement(int[] nums) {
+        int count = 0;
+        int result = 0;
+        for(int val : nums){
+            if(count == 0)
+                result = val;
+            
+            if(result == val)
+                count++;
+            else
+                count--;
+        }
+        return result;
+    }
+}
