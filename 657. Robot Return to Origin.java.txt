@@ -1,0 +1,21 @@
+class Solution {
+    public boolean judgeCircle(String moves) {
+        
+        int ver =0, hor=0;
+        
+        for(int i=0; i<moves.length(); i++){
+            if(moves.charAt(i) == 'L'){
+                hor--;
+            }else if(moves.charAt(i) == 'R'){
+                hor++;
+            }else if(moves.charAt(i) == 'D'){
+                ver--;
+            }else if(moves.charAt(i) == 'U'){
+                ver++;
+            }
+        }
+        
+        return (ver == 0 && hor==0);
+        
+    }
+}
