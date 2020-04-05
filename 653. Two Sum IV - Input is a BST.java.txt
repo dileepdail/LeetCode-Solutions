@@ -1,0 +1,26 @@
+class Solution {
+    
+    public boolean findTarget(TreeNode root, int k) {
+        
+        Set<Integer> set = new HashSet<Integer>();
+        boolean isTwoSum = false;
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        
+        queue.add(root);
+        
+        while(!queue.isEmpty()){
+            
+            TreeNode node = queue.poll();
+            if (set.contains(k - node.val))
+                    return true;
+            set.add(node.val);
+            if(node.left!=null)
+                queue.add(node.left);
+            
+            if(node.right!=null)
+                queue.add(node.right);
+        }
+        
+        return isTwoSum;
+    }
+}
