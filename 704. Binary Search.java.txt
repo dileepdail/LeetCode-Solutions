@@ -1,0 +1,25 @@
+class Solution {
+    int result = -1;
+    public int search(int[] nums, int target) {
+        
+        bSerach(nums,target,0,nums.length-1);
+        return result;
+    }
+    
+    public void bSerach(int[] nums, int target, int first, int last){
+        
+        if(!(first<=last))
+            return;
+        
+        int mid = (first+last)/2;
+        
+        if(nums[mid] == target){
+            result = mid;
+            return;
+        }else if(nums[mid] > target){
+            bSerach(nums,target,first,mid-1);
+        }else{
+            bSerach(nums,target,mid+1,last);
+        }
+    }
+}
