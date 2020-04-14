@@ -1,0 +1,52 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    
+    HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();
+    
+    public int[] findFrequentTreeSum(TreeNode root) {
+        
+        int max = Integer.MIN_VALUE;
+        helper(root);
+        List<Integer> list = new ArrayList<Integer>();
+        
+        for(int val: hm.values()){
+            if(val>max)
+                max=val;
+        }
+        
+        for (Map.Entry<Integer,Integer> entry : hm.entrySet()){
+            if(max == entry.getValue())
+                list.add(entry.getKey());
+        }
+        
+        int [] retArr = new int[list.size()]; 
+        
+        for(int i=0; i<list.size(); i++){
+            retArr[i] = list.get(i);
+        }  
+        
+        return retArr;
+    }
+
+    public int helper(TreeNode node){
+        if(node == null)
+            return 0;
+        
+        int left = helper(node.left);
+        int right = helper(node.right);
+        
+        int sum = node.val+left+right; 
+        
+        hm.put(sum, hm.getOrDefault(sum,0)+1);
+        
+        return sum;
+    }
+}
