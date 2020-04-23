@@ -1,0 +1,74 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        if(nums.length == 0)
+            return -1;
+        
+        if(nums.length ==1){
+            if(nums[0] == target)
+                return 0;
+            else
+                return -1;
+        }
+        
+        int result =-1;
+        
+        if(nums[nums.length-1] > nums[0]){
+            result = binarySearch(nums, 0,nums.length-1, target);
+        }else{
+            int pivot = findPivot(nums);
+            if(target == nums[pivot]){
+                return pivot;
+            }  
+            else if(target < nums[0]){
+                result = binarySearch(nums, pivot+1,nums.length-1, target);
+            }else{
+                result = binarySearch(nums, 0,pivot-1, target);
+            }
+        }
+        
+        return result;
+    }
+    
+    public int binarySearch(int[] nums, int first, int last, int target){
+        
+        if(last >= first){
+            int mid = first +(last-first)/2;
+            
+            if(nums[mid] == target){
+                return mid;
+            }else if(nums[mid] > target){
+                return binarySearch(nums, first, mid-1, target);
+            }else{
+                return binarySearch(nums, mid+1, last, target);
+            }
+        }
+        
+        return -1;
+    }
+    
+    public int findPivot(int[] nums){
+        
+        if(nums[nums.length-1] > nums[0])
+            return 0;
+        
+        int left=0, right=nums.length-1, mid=0;
+        
+        while(right >= left){
+            
+            mid = left +(right-left)/2;
+            
+            if(nums[mid] > nums[mid+1])
+                return mid;
+            
+            if(nums[mid-1] > nums[mid])
+                return mid-1;
+            
+            if(nums[mid] > nums[left])
+                left = mid+1;
+            else
+                right = mid;
+        }
+        
+        return -1;
+    }
+}
