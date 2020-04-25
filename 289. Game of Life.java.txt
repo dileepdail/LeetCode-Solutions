@@ -1,0 +1,43 @@
+class Solution {
+    public void gameOfLife(int[][] board) {
+        
+        List<int[]> liveList = new ArrayList<int[]>();
+        List<int[]> deadList = new ArrayList<int[]>();
+        
+        int m = board.length;
+        int n = board[0].length;
+        
+        int[][] dirs = new int[][]{{0,-1},{0,1},{-1,0},{1,0},{-1,-1},{-1,1},{1,-1},{1,1}};
+        
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                
+                int count =0;
+                
+                for(int[] dir: dirs){
+
+                    int newRow = dir[0] + i;
+                    int newCol = dir[1] + j;
+
+                    if(newRow >=0 && newRow <m && newCol >=0 && newCol <n && board[newRow][newCol] ==1){
+                        count++;
+                    }
+                }
+                
+                if(board[i][j] ==1 && (count < 2 || count >3)){
+                    liveList.add(new int[]{i,j});
+                } else if(board[i][j] ==0 && count ==3){
+                    deadList.add(new int[]{i,j});
+                }
+            } 
+        }
+      
+        for(int [] arr: liveList){
+            board[arr[0]][arr[1]]=0;
+        }
+        
+        for(int [] arr: deadList){
+            board[arr[0]][arr[1]]=1;
+        }
+    }
+}
