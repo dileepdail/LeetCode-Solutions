@@ -1,0 +1,21 @@
+class Solution {
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        
+        int greatestNo = Integer.MIN_VALUE;
+        
+        for(int val: candies){
+            if(val>greatestNo)
+                greatestNo=val;
+        }
+        
+        List<Boolean> list = new ArrayList<Boolean>();
+        
+        greatestNo -= extraCandies;
+        
+        for(int val: candies){
+            list.add((val >= greatestNo));
+        }
+     
+        return list;
+    }
+}

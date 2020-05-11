@@ -1,0 +1,39 @@
+class Solution {
+    public int[] kWeakestRows(int[][] mat, int k) {
+        
+        Map<Integer, List<Integer>> treeMap = new TreeMap<Integer, List<Integer>>();
+        
+        for(int i=0; i<mat.length; i++){
+            int count=0;
+            for(int j=0; j<mat[0].length;j++){
+                if(mat[i][j] ==1)
+                    count++;
+            }
+            
+            if(treeMap.containsKey(count)){
+                treeMap.get(count).add(i);
+                
+            }else{
+                List<Integer> list = new ArrayList<Integer>();
+                list.add(i);
+                treeMap.put(count,list);
+            }
+        }
+        
+        int [] retArr = new int[k];
+        int count = 0;
+        
+        for(List<Integer> list: treeMap.values()){
+            if(count == k)
+                break;
+            
+            for(int val: list){
+                if(count<k)
+                    retArr[count] = val;
+                count++;
+            }
+        }
+        
+        return retArr;      
+    }
+}

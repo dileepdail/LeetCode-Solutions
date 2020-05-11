@@ -1,0 +1,11 @@
+class Solution {
+    public int findNumbers(int[] nums) {
+        int result = 0;
+        
+        for(int val: nums){
+            if((Integer.toString(val)).length()%2 ==0) result++;
+        }
+        
+        return result;
+    }
+}

@@ -1,0 +1,20 @@
+class Solution {
+    public String convertToTitle(int n) {
+        
+        char[] alphabet = new char[26];
+          
+        for (char c = 'A'; c <= 'Z'; c++) {
+            alphabet[c - 'A'] = c;
+        }
+        
+        StringBuffer sb = new StringBuffer();
+        
+        while(n>0){
+            int mod = (n-1)%26;
+            sb.append(alphabet[mod]);
+            n=(n-mod)/26;
+        }
+        
+        return sb.reverse().toString();
+    }
+}
