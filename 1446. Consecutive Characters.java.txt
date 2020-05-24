@@ -1,0 +1,23 @@
+class Solution {
+    public int maxPower(String s) {
+        
+        int max = Integer.MIN_VALUE;
+        int sum = 0;
+        
+        int first=0, last=0;
+        
+        while(last<s.length()){
+            if(s.charAt(last) == s.charAt(first)){
+                last++;
+                sum++;
+            }else{
+                first = last;
+                sum=0;
+            }
+            
+            max = Math.max(max,sum); 
+        }
+        
+        return max;
+    }
+}

@@ -1,0 +1,44 @@
+class Solution {
+        public List<Integer> getCriticalNodes(int[][] edges, int numNodes, int numEdges){
+        List<Integer> res = new ArrayList<>();
+        for(int i = 0; i < numEdges; i++){
+            if(checkConnection(edges, i, numNodes) == false){
+                res.add(i);
+            }
+        }
+        return res;
+    }
+    public boolean checkConnection(int[][] edges, int removeNode, int numNodes){
+        int[] root = new int[numNodes];
+
+        for(int i = 0; i < numNodes; i++){
+            root[i] = i;
+        }
+
+        for(int[] edge: edges){
+            if(edge[0] == removeNode || edge[1] == removeNode){
+                continue;
+            }
+            int root1 = getRoot(root, edge[0]);
+            int root2 = getRoot(root, edge[1]);
+            if( root1 != root2){
+                root[root1] = root[root2];
+            }
+        }
+        int rootCount = 0;
+        for(int i = 0; i < root.length; i++){
+            if(root[i] == i && i != removeNode){
+                rootCount++;
+            }
+        }
+
+        return rootCount == 1 ? true : false;
+    }
+
+    public int getRoot(int[] root, int index){
+        while(root[index] != index){
+            index = root[index];
+        }
+        return index;
+    }
+}
